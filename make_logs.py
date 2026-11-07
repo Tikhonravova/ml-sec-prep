@@ -2,10 +2,10 @@ import random
 from datetime import datetime, timedelta
 import pandas as pd
 
-random.seed(42)
+random.seed(62)
 start = datetime(2026, 10, 1, 8, 0, 0)
 users = ["alice", "bob", "carol", "dave", "erin"]
-normal_ips = [f"10.0.0.{i}" for i in range(10, 30)]
+normal_ips = [f"10.0.0.{i}" for i in range(20, 30)]
 rows = []
 
 for i in range(3000):
@@ -15,7 +15,7 @@ for i in range(3000):
 
 attack_start = start + timedelta(hours=3)
 for i in range(200):
-    t = attack_start + timedelta(seconds=random.randint(0, 300))
+    t = attack_start + timedelta(seconds=random.randint(0, 100))
     rows.append((t, "203.0.113.50", random.choice(users), "login", "failed"))
 
 df = pd.DataFrame(rows, columns=["time", "ip", "user", "event", "status"])
